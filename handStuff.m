@@ -1,3 +1,24 @@
+%Loading the images
+type = 1:9;
+number = 1:10;
+k=1;
+rawImages = cell(200,1);
+for i=1:length(type)
+    for j=1:length(number)
+        image = ['./manos/00',num2str(type(i)),'/mano',num2str(type(i)),'_',num2str(number(j)),'.jpg'];
+        rawImages{k} = imread(image);
+        k=k+1;
+    end   
+end
+for i=10:length(type)
+    for j=1:length(number)
+        image = ['./manos/0',num2str(type(i)),'/mano',num2str(type(i)),'_',num2str(number(j)),'.jpg'];
+        rawImages{k} = imread(image);
+        k=k+1;
+    end   
+end
+
+%% computing area and perimeters
 %given an image compute area
 
 image = imread('mano1_1.jpg');

@@ -1,3 +1,15 @@
+%Reading the images
+type = 1:20;
+number = 1:10;
+k=1;
+for i=1:length(type)
+    for j=1:length(number)
+        image = ['mano',num2str(type(i)),'_',num2str(number(j)),'.jpg'];
+        matrix{k} = imread(image);
+        k=k+1;
+    end   
+end    
+%% computing area and perimeters
 %given an image compute area
 
 image = imread('mano1_1.jpg');
@@ -23,6 +35,5 @@ manoBella = keepMaxObj(logical(segmented_im));
 areaMano = nnz(manoBella) %this count the number of non-zero elements in ManoBella (i.e. the area of the hand)
 
 
-perimetro = edge(ManoBella,'Canny',[]); %edge detection with canny algorithm
-
-imshow(perimetro)
+im_perimetral = edge(manoBella,'Canny',[]); %edge detection with canny algorithm
+perimetro = nnz(im_perimetral)

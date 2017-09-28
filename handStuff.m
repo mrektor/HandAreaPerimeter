@@ -18,18 +18,18 @@ for i=10:length(type2)
         k=k+1;
     end   
 end
-%%
+
+%% computing perimeter and area with ad-hoc external function
 
 perimeters = zeros(200,1);
 areas = zeros(200,1);
 
-for i=1:10
+for i=1:110
     [area, per] = getAreaPerimeterHand(rawImages{i})
     areas(i) = area;
     perimeters(i) = per;
 end
-    
-
+   
 
 
 

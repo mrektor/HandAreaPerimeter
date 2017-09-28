@@ -1,0 +1,6 @@
+%given an image compute area
+
+image = imread('mano1_1.jpg');
+cropped_im = image(150:end,:);
+
+for i=

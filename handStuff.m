@@ -20,9 +20,8 @@ end
 
 %choose the biggest connected blob
 manoBella = keepMaxObj(logical(segmented_im));
+areaMano = nnz(manoBella) %this count the number of non-zero elements in ManoBella (i.e. the area of the hand)
 
 
-
-perimetro = edge(segmented_im,'Canny',[]); %edge detection with canny algorithm
-
-imshow(manoBella)
+im_perimetral = edge(manoBella,'Canny',[]); %edge detection with canny algorithm
+perimetro = nnz(im_perimetral)

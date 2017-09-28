@@ -2,7 +2,9 @@
 
 image = imread('mano1_1.jpg');
 cropped_im = image(150:end,:);
-threshold = graythresh(cropped_im)*255;
+
+%threshold chose using Otsu's method
+threshold = graythresh(cropped_im)*255; %times 255 for unit8 format
 
 segmented_im = zeros(size(cropped_im));
 
@@ -16,4 +18,11 @@ for i=1:size(cropped_im,1)
    end
 end
 
-imshow(segmented_im)
+%choose the biggest connected blob
+manoBella = keepMaxObj(logical(segmented_im));
+
+
+
+perimetro = edge(segmented_im,'Canny',[]); %edge detection with canny algorithm
+
+imshow(manoBella)

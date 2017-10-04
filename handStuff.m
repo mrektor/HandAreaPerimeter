@@ -1,4 +1,8 @@
-%Loading the images
+
+m = magic(3)
+a = zigzag(m)
+
+%% Loading the images
 type = 1:9;
 number = 1:10;
 k=1;
@@ -30,7 +34,6 @@ for i=1:110
     perimeters(i) = per;
 end
    
-
 
 
 

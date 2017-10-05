@@ -30,21 +30,12 @@ end
 perimeters = zeros(9,10);
 areas = zeros(9,10);
 
-for i=1:9
-    for k=1:10
-        [area, per] = getAreaPerimeterHand(rawImages{i,k})
-        areas(i,k) = area;
-        perimeters(i,k) = per;
-    end
+for i=1:110
+    [area, per] = getAreaPerimeterHand(rawImages{i})
+    areas(i) = area;
+    perimeters(i) = per;
 end
    
-%% score
 
-score = zeros(9,2); %9 persone, 2 grandezze (prima media perimetro, dopo media area)
-
-for i=1:9
-    score(i,1) = mean(areas(i,1:4));
-    score(i,2) = mean(perimeters(i,1:4));
-end
 
 

@@ -73,7 +73,6 @@ for i=1:numUsers %dell'utente i-esimo vero
     for k=1:numUsers %con l'impostore k-esimo stronzo
         for j=4:10 %1:10 usando tutte le immagini per l'impostore. Comunque usiamo 4:10
             if k~=i %fai il confronto solo se non è la stessa persona
-                disp('diedje')
                 impostorScore(i,l) = euclDist(modelo(i,:),[areas(k,j) perimeters(k,j)]); %confronta il modello del tizio vero (i) con i dati dell'impostore (k)
                 l=l+1;
             end
@@ -81,4 +80,41 @@ for i=1:numUsers %dell'utente i-esimo vero
     end
 end
 
+%% RESULTS - histogram plotting
+
+Genuin = genuineScore(:);
+Impost = impostorScore(:);
+
+[H, x] = hist(Genuin,200);
+H_eq = H / sum(H); % normalization
+figure
+title('Histograms')
+pdf = bar(x, H_eq); % to compute the pdf
+grid on
+[H1, x1] = hist(Impost,200);
+H_eq1 = H1 / sum(H1); % normalization
+hold on
+pdf1 = bar(x1, H_eq1, 'r');
+
+[FA, z] = ecdf(H_eq); % to compute the comulative functio (integral of pdf)
+[FR, z1] = ecdf(H_eq1);
+figure, plot(FA)
+grid on
+title('Falsa Acceptaciòn')
+xlabel('x')
+ylabel('F(x)')
+figure, plot(FR)
+grid on
+title('Falso Rechazo')
+xlabel('x')
+ylabel('F(x)')
+
+xq = 1:0.25:10;
+vq = interp1(FA,xq); % interpolation to obtain the same number of points between FA and FR
+FA_1 = vq';
+FA_2 = 1 - FA_1;
+figure
+plot(FA_2)
+grid on
+title('1 - Falsa Acceptaciòn Interpolated')
 

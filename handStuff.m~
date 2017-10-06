@@ -5,9 +5,22 @@ type = 1:9;
 number = 1:10;
 k=1;
 l=1;
-numUsers = 9;
+numUsers = 20;
 rawImages = cell(numUsers,10);
 for i=1:length(type)
+    for j=1:length(number)
+        image = ['../manos/00',num2str(type(i)),'/mano',num2str(type(i)),'_',num2str(number(j)),'.jpg'];
+        rawImages{k,l} = imread(image);
+        l=l+1;
+    end 
+    l=1;
+    k=k+1;
+end
+type2 = 10:numUsers;
+number = 1:10;
+k=1;
+l=1;
+for i=10:20
     for j=1:length(number)
         image = ['../manos/00',num2str(type(i)),'/mano',num2str(type(i)),'_',num2str(number(j)),'.jpg'];
         rawImages{k,l} = imread(image);
@@ -59,7 +72,7 @@ for i=1:numUsers
     end
 end
 
-
+hist(genuineScore(1,:),100)
 %% distanza da le mani score impostore
 k=1
 i=1
@@ -67,24 +80,23 @@ j=1
 l=1
 
 for i=1:numUsers
-    for k=1:nu
-    disp('k')
-    disp(k)
-    disp('i')
-    disp(i)
-    for j=1:10
-        if k~=i
-            disp('diedje')
-            impostorScore(i,l) = euclDist(modelo(k,:),[areas(i,j) perimeters(i,j)]);
-            l=l+1;
+    for k=1:numUsers
+%         disp('k')
+%         disp(k)
+%         disp('i')
+%         disp(i)
+        for j=1:10
+            if k~=i
+                disp('diedje')
+                impostorScore(k,l) = euclDist(modelo(k,:),[areas(i,j) perimeters(i,j)]);
+                l=l+1;
+            end
         end
     end
-    k=k+1;
 end
 
 
-impostorScore
-
+impostorScore;
 
 
 

@@ -5,7 +5,7 @@ type = 1:9;
 number = 1:10;
 k=1;
 l=1;
-numUsers = 9;
+numUsers = 20;
 rawImages = cell(numUsers,10);
 for i=1:length(type)
     for j=1:length(number)
@@ -16,15 +16,22 @@ for i=1:length(type)
     l=1;
     k=k+1;
 end
-% 
-% type2 = 10:20; %qui ci potrebbe essere un probelma
-% for i=10:length(type2)
-%     for j=1:length(number)
-%         image = ['./manos/0',num2str(type2(i)),'/mano',num2str(type2(i)),'_',num2str(number(j)),'.jpg'];
-%         rawImages{k} = imread(image);
-%         k=k+1;
-%     end   
-% end
+
+
+k=1;
+l=1;
+type2 = 10:20;
+
+for i=10:numUsers
+    for j=1:length(number)
+        image = ['../manos/0',num2str(type2(k)),'/mano',num2str(type2(k)),'_',num2str(number(j)),'.jpg'];
+        rawImages{i,l} = imread(image);
+        l=l+1;
+    end 
+    l=1;
+    k=k+1;
+end
+
 
 %% computing perimeter and area with ad-hoc external function
 
@@ -59,7 +66,7 @@ for i=1:numUsers
     end
 end
 
-
+hist(genuineScore(1,:),100)
 %% distanza da le mani score impostore
 k=1
 i=1
@@ -83,8 +90,7 @@ for i=1:numUsers
 end
 
 
-impostorScore
-
+impostorScore;
 
 
 

@@ -40,7 +40,7 @@ areas = zeros(numUsers,10);
 
 for i=1:numUsers
     for k=1:10
-        [area, per] = getAreaPerimeterHand(rawImages{i,k})
+        [area, per] = getAreaPerimeterHand(rawImages{i,k});
         areas(i,k) = area;
         perimeters(i,k) = per;
     end
@@ -48,9 +48,9 @@ end
    
 %% estimate (modelo usuario)
 
-modelo = zeros(numUsers,2); %9 persone, 2 grandezze (prima media perimetro, dopo media area)
+modelo = zeros(numUsers,2); %numUser persone, 2 grandezze (prima media perimetro, dopo media area)
 
-for i=1:9
+for i=1:numUsers
     modelo(i,1) = mean(areas(i,1:4));
     modelo(i,2) = mean(perimeters(i,1:4));
 end
@@ -66,7 +66,6 @@ for i=1:numUsers
     end
 end
 
-hist(genuineScore(1,:),100)
 %% distanza da le mani score impostore
 k=1
 i=1

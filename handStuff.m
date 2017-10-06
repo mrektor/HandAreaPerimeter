@@ -67,29 +67,18 @@ for i=1:numUsers
 end
 
 %% distanza da le mani score impostore
-k=1
-i=1
-j=1
-l=1
 
-for i=1:numUsers
-    for k=1:numUsers
-%         disp('k')
-%         disp(k)
-%         disp('i')
-%         disp(i)
-        for j=1:10
-            if k~=i
+for i=1:numUsers %dell'utente i-esimo vero
+    l=1;
+    for k=1:numUsers %con l'impostore k-esimo stronzo
+        for j=4:10 %1:10 usando tutte le immagini per l'impostore. Comunque usiamo 4:10
+            if k~=i %fai il confronto solo se non è la stessa persona
                 disp('diedje')
-                impostorScore(k,l) = euclDist(modelo(k,:),[areas(i,j) perimeters(i,j)]);
+                impostorScore(i,l) = euclDist(modelo(i,:),[areas(k,j) perimeters(k,j)]); %confronta il modello del tizio vero (i) con i dati dell'impostore (k)
                 l=l+1;
             end
         end
     end
 end
-
-
-impostorScore;
-
 
 
